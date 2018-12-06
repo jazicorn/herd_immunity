@@ -16,17 +16,23 @@ class Simulation(object):
     def __init__(self, pop_size, vacc_percentage, initial_infected=1, virus):
         ''' Logger object logger records all events during the simulation.
         Population represents all Persons in the population.
-        The next_person_id is the next available id for all created Persons,
+
+        (1) The next_person_id is the next available id for all created Persons,
         and should have a unique _id value.
-        The vaccination percentage represents the total percentage of population
+
+        (2) The vaccination percentage represents the total percentage of population
         vaccinated at the start of the simulation.
-        You will need to keep track of the number of people currently infected with the disease.
-        The total infected people is the running total that have been infected since the
+
+        (3) You will need to keep track of the number of people currently infected with the disease.
+
+        (4) The total infected people is the running total that have been infected since the
         simulation began, including the currently infected people who died.
-        You will also need to keep track of the number of people that have die as a result
+
+        (5) You will also need to keep track of the number of people that have die as a result
         of the infection.
 
-        All arguments will be passed as command-line arguments when the file is run.
+        (6) All arguments will be passed as command-line arguments when the file is run.
+
         HINT: Look in the if __name__ == "__main__" function at the bottom.
         '''
         # TODO: Create a Logger object and bind it to self.logger.
@@ -50,6 +56,9 @@ class Simulation(object):
             virus_name, population_size, vacc_percentage, initial_infected)
         self.newly_infected = []
 
+    def logger(self):
+        pass
+
     def _create_population(self, initial_infected):
         '''This method will create the initial population.
             Args:
@@ -69,6 +78,7 @@ class Simulation(object):
         # Use the attributes created in the init method to create a population that has
         # the correct intial vaccination percentage and initial infected.
         pass
+        initial_infected * 100
 
     def _simulation_should_continue(self):
         ''' The simulation should only end if the entire population is dead
