@@ -2,8 +2,6 @@ import random
 import decimal
 import pytest
 import virus from Virus
-# TODO: Import the virus class
-
 
 class Person(object):
     ''' Person objects will populate the simulation. '''
@@ -28,14 +26,12 @@ class Person(object):
         '''
         # Only called if infection attribute is not None.
         # TODO:  Finish this method. Should return a Boolean
-        pass
-
-        num = round(random.random(),2)
-        if num < self.mortality_rate:
-            self.is_alive = False
-        else:
-            self.is_vaccinated = True
-
+        if self.infection = None:
+            rand_num = round(random.random(), 2)
+            if rand_num < virus.mortality_rate:
+                self.is_alive = False
+            else:
+                self.is_vaccinated = True
 
 ''' These are simple tests to ensure that you are instantiating your Person class correctly. '''
 def test_vacc_person_instantiation():
@@ -69,4 +65,4 @@ def test_sick_person_instantiation():
     assert person._id == 1
     assert person.is_alive == True
     assert person.is_vaccinated == False
-    ass
+    assert person.infected == None
