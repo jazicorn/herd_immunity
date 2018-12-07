@@ -39,9 +39,12 @@ class Simulation(object):
         # Remember to call the appropriate logger method in the corresponding parts of the simulation.
         # TODO: Call self._create_population() and pass in the correct parameters.
         # Store the array that this method will return in the self.population attribute.
+        self.population = self._create_population(initial_infected)
         # TODO: Store each newly infected person's ID in newly_infected attribute.
         # At the end of each time step, call self._infect_newly_infected()
         # and then reset .newly_infected back to an empty list.
+        self.newly_infected = []
+
         self.logger = None
         self.population = [] # List of Person objects
         self.pop_size = pop_size # Int
@@ -57,7 +60,7 @@ class Simulation(object):
         self.newly_infected = []
 
     def logger(self):
-        pass
+        Logger(self.file_name)
 
     def _create_population(self, initial_infected):
         '''This method will create the initial population.
@@ -77,8 +80,9 @@ class Simulation(object):
 
         # Use the attributes created in the init method to create a population that has
         # the correct intial vaccination percentage and initial infected.
-        pass
-        initial_infected * 100
+        for i in range(initial_infected):
+            population.append(Person(i, False, self.virus_name))
+
 
     def _simulation_should_continue(self):
         ''' The simulation should only end if the entire population is dead
