@@ -1,41 +1,19 @@
 class Logger(object):
     ''' Utility class responsible for logging all interactions during the simulation. '''
-    # TODO: Write a test suite for this class to make sure each method is working
-    # as expected.
-
-    # PROTIP: Write your tests before you solve each function, that way you can
-    # test them one by one as you write your class.
+    # TODO: Write a test suite for this class to make sure each method is working as expected.
+    # PROTIP: Write your tests before you solve each function, that way you can test them one by one as you write your class.
 
     def __init__(self, file_name):
-        # TODO:  Finish this initialization method. The file_name passed should be the
-        # full file name of the file that the logs will be written to.
         self.file_name = file_name
 
-        #with open
-
-    def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
-                       basic_repro_num):
+    def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate, basic_repro_num):
         '''
-        The simulation class should use this method immediately to log the specific
-        parameters of the simulation as the first line of the file.
+        The simulation class should use this method immediately to log the specific parameters of the simulation as the first line of the file.
         '''
-        # TODO: Finish this method. This line of metadata should be tab-delimited
-        # it should create the text file that we will store all logs in.
-        # TIP: Use 'w' mode when you open the file. For all other methods, use
-        # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
-        # NOTE: Make sure to end every line with a '/n' character to ensure that each
-        # event logged ends up on a separate line!
-        walking_dead = open(self.file_name, "w")
+        f = open(file_name, "w")
+        f.write("Population Size: {} \tPercentage Vaccinated: {} \tVirus Name: {} \tMortality Rate {} \tVirus Reproduction Rate: {}".format(pop_size, vacc_percentage, virus_name, mortality_rate, basic_repro_num))
 
-        walking_dead.write("Population Size: {} \tPercentage Vaccinated: {} \tVirus Name: {} \tMortality Rate {} \tVirus Reproduction Rate: {}".format(pop_size, vacc_percentage, virus_name, mortality_rate,
-                           basic_repro_num))
-        walking_dead.close()
-
-    def test_write_metadata():
-        print(yas)
-
-    def log_interaction(self, person, random_person, random_person_sick=None,
-                        random_person_vacc=None, did_infect=None):
+    def log_interaction(self, person, random_person, random_person_sick=None,random_person_vacc=None, did_infect=None):
         '''
         The Simulation object should use this method to log every interaction
         a sick person has during each time step.
@@ -45,24 +23,15 @@ class Logger(object):
         or the other edge cases:
             "{person.ID} didn't infect {random_person.ID} because {'vaccinated' or 'already sick'} \n"
         '''
-        # TODO: Finish this method. Think about how the booleans passed (or not passed)
-        # represent all the possible edge cases. Use the values passed along with each person,
-        # along with whether they are sick or vaccinated when they interact to determine
-        # exactly what happened in the interaction and create a String, and write to your logfile.
-        walking_dead = open(self.file_name, 'a')
-
-        walking_dead.write("\nInfected Person: #{} \nExposed Person #{}".format(person1._id, person2._id))
-
         if did_infect == True:
-            walking_dead.write("\nPerson #{} was infected by person #{}".format(person2._id, person1._id))
-        elif person2_vacc == True:
+            f.write("\nPerson #{} was infected by person #{}".format(person._id, random_person._id))
+        elif person_vacc == True:
             self.saved_by_vaccine += 1
-            walking_dead.write("\nPerson #{} is vaccinated against the infection.".format(person2._id))
-        elif person2_sick == True:
-            walking_dead.write("\nPerson #{} is already infected.".format(person2._id))
+            f.write("\nPerson #{} is vaccinated against the infection.".format(person._id))
+        elif person_sick == True:
+            f.write("\nPerson #{} is already infected.".format(person._id))
         else:
-            walking_dead.write("\nPerson #{} did not get infected by person #{}".format(person2._id, person1._id))
-
+            f.write("\nPerson #{} did not get infected by person #{}".format(person._id, random_person._id))
 
     def log_infection_survival(self, person, did_die_from_infection):
         ''' The Simulation object uses this method to log the results of every
@@ -71,10 +40,10 @@ class Logger(object):
         The format of the log should be:
             "{person.ID} died from infection\n" or "{person.ID} survived infection.\n"
         '''
-        # TODO: Finish this method. If the person survives, did_die_from_infection
-        # should be False.  Otherwise, did_die_from_infection should be True.
-        # Append the results of the infection to the logfile
-        pass
+        if did_die_from_infection is True:
+            f.write("{} died from infection".format(person._id))
+        else:
+            f.write("{} survived infection".format(person._id))
 
     def log_time_step(self, time_step_number):
         ''' STRETCH CHALLENGE DETAILS:
