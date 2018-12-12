@@ -11,6 +11,7 @@ class Logger(object):
         # full file name of the file that the logs will be written to.
         self.file_name = file_name
 
+        #with open
 
     def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
                        basic_repro_num):
@@ -24,14 +25,11 @@ class Logger(object):
         # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
-        f = open(self.file_name, "w")
-        answers = open('answers.txt', "w")
+        walking_dead = open(self.file_name, "w")
 
-        f.write("Population Size: {} \tPercentage Vaccinated: {} \tVirus Name: {} \tMortality Rate {} \tVirus Reproduction Rate: {}".format(pop_size, vacc_percentage, virus_name, mortality_rate,
+        walking_dead.write("Population Size: {} \tPercentage Vaccinated: {} \tVirus Name: {} \tMortality Rate {} \tVirus Reproduction Rate: {}".format(pop_size, vacc_percentage, virus_name, mortality_rate,
                            basic_repro_num))
-
-        answers.write("Population Size: {} \tPercentage Vaccinated: {} \tVirus Name: {} \tMortality Rate {} \tVirus Reproduction Rate: {}".format(pop_size, vacc_percentage, virus_name, mortality_rate,
-                           basic_repro_num))
+                           walking_dead.close()
 
     def test_write_metadata():
         print(yas)
@@ -51,19 +49,19 @@ class Logger(object):
         # represent all the possible edge cases. Use the values passed along with each person,
         # along with whether they are sick or vaccinated when they interact to determine
         # exactly what happened in the interaction and create a String, and write to your logfile.
-        f = open(self.file_name, 'a')
+        walking_dead = open(self.file_name, 'a')
 
-        f.write("\nInfected Person: #{} \nExposed Person #{}".format(person1._id, person2._id))
+        walking_dead.write("\nInfected Person: #{} \nExposed Person #{}".format(person1._id, person2._id))
 
         if did_infect == True:
-            f.write("\nPerson #{} was infected by person #{}".format(person2._id, person1._id))
+            walking_dead.write("\nPerson #{} was infected by person #{}".format(person2._id, person1._id))
         elif person2_vacc == True:
             self.saved_by_vaccine += 1
-            f.write("\nPerson #{} is vaccinated against the infection.".format(person2._id))
+            walking_dead.write("\nPerson #{} is vaccinated against the infection.".format(person2._id))
         elif person2_sick == True:
-            f.write("\nPerson #{} is already infected.".format(person2._id))
+            walking_dead.write("\nPerson #{} is already infected.".format(person2._id))
         else:
-            f.write("\nPerson #{} did not get infected by person #{}".format(person2._id, person1._id))
+            walking_dead.write("\nPerson #{} did not get infected by person #{}".format(person2._id, person1._id))
 
 
     def log_infection_survival(self, person, did_die_from_infection):

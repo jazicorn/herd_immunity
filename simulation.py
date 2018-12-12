@@ -29,7 +29,8 @@ class Simulation(object):
         '''
         # TODO: Create a Logger object and bind it to self.logger.
         # Remember to call the appropriate logger method in the corresponding parts of the simulation.
-        logger = Logger(self)
+        logger = Logger("walking_dead.txt"):
+
         # TODO: Call self._create_population() and pass in the correct parameters.
         # Store the array that this method will return in the self.population attribute.
         self.population = self._create_population(initial_infected)
@@ -49,9 +50,6 @@ class Simulation(object):
         self.file_name = "{}_simulation_pop_{}_vp_{}_infected_{}.txt".format(
             virus_name, population_size, vacc_percentage, initial_infected)
 
-
-    def Logger(self):
-        print('yas')
 
     def _create_population(self, initial_infected):
         '''This method will create the initial population.
