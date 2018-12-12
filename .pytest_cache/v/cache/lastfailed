@@ -1,5 +1,0 @@
-{
-  "simulation.py": true,
-  "simulation_test.py": true,
-  "simulation_test.py::test_vacc_person_instantiation": true
-}

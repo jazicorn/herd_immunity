@@ -19,6 +19,9 @@ class Person(object):
         self.is_vaccinated = is_vaccinated # Boolean
         self.infection = infection # Virus or None
 
+    def __repr__(self):
+        return str(self)
+
     def did_survive_infection(self):
         ''' Generate a random number and compare to virus's mortality_rate.
         If random number is smaller, person dies from the disease.

@@ -31,7 +31,13 @@ class Logger(object):
         elif person_sick == True:
             f.write("\nPerson #{} is already infected.".format(person._id))
         else:
+<<<<<<< HEAD
             f.write("\nPerson #{} did not get infected by person #{}".format(person._id, random_person._id))
+=======
+            walking_dead.write("\nPerson #{} did not get infected by person #{}".format(person2._id, person1._id))
+            file.close()
+
+>>>>>>> b296db00683e69293fabf031a5e6e1f5d9b68461
 
     def log_infection_survival(self, person, did_die_from_infection):
         ''' The Simulation object uses this method to log the results of every
@@ -40,12 +46,24 @@ class Logger(object):
         The format of the log should be:
             "{person.ID} died from infection\n" or "{person.ID} survived infection.\n"
         '''
+<<<<<<< HEAD
         if did_die_from_infection is True:
             f.write("{} died from infection".format(person._id))
         else:
             f.write("{} survived infection".format(person._id))
+=======
+        # TODO: Finish this method. If the person survives, did_die_from_infection
+        # should be False.  Otherwise, did_die_from_infection should be True.
+        # Append the results of the infection to the logfile
+        with open(self.file_name, "walking_dead") as file:
+        if did_die_from_infection:
+            self.file.write("%s died\n" % person._id)
+        else:
+            self.file.write("%s survived infection\n % person._id")
+        file.close()
+>>>>>>> b296db00683e69293fabf031a5e6e1f5d9b68461
 
-    def log_time_step(self, time_step_number):
+    def log_time_step(self, number_of_dead, time_step_number):
         ''' STRETCH CHALLENGE DETAILS:
 
         If you choose to extend this method, the format of the summary statistics logged
@@ -63,4 +81,8 @@ class Logger(object):
         # TODO: Finish this method. This method should log when a time step ends, and a
         # new one begins.
         # NOTE: Here is an opportunity for a stretch challenge!
-        pass
+
+        with open(self.file_name, "walking_dead") as file:
+            file.writelines(["Time step number {} ended, beginning {} \n".format(
+                time_step_number, time_step_number + 1)])
+        file.close()
