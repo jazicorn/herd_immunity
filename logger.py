@@ -29,7 +29,7 @@ class Logger(object):
 
         walking_dead.write("Population Size: {} \tPercentage Vaccinated: {} \tVirus Name: {} \tMortality Rate {} \tVirus Reproduction Rate: {}".format(pop_size, vacc_percentage, virus_name, mortality_rate,
                            basic_repro_num))
-                           walking_dead.close()
+        walking_dead.close()
 
     def test_write_metadata():
         print(yas)
