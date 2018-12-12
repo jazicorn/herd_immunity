@@ -29,7 +29,7 @@ class Logger(object):
 
         walking_dead.write("Population Size: {} \tPercentage Vaccinated: {} \tVirus Name: {} \tMortality Rate {} \tVirus Reproduction Rate: {}".format(pop_size, vacc_percentage, virus_name, mortality_rate,
                            basic_repro_num))
-                           walking_dead.close()
+        walking_dead.close()
 
     def test_write_metadata():
         print(yas)
@@ -62,6 +62,7 @@ class Logger(object):
             walking_dead.write("\nPerson #{} is already infected.".format(person2._id))
         else:
             walking_dead.write("\nPerson #{} did not get infected by person #{}".format(person2._id, person1._id))
+            file.close()
 
 
     def log_infection_survival(self, person, did_die_from_infection):
@@ -74,9 +75,14 @@ class Logger(object):
         # TODO: Finish this method. If the person survives, did_die_from_infection
         # should be False.  Otherwise, did_die_from_infection should be True.
         # Append the results of the infection to the logfile
-        pass
+        with open(self.file_name, "walking_dead") as file:
+        if did_die_from_infection:
+            self.file.write("%s died\n" % person._id)
+        else:
+            self.file.write("%s survived infection\n % person._id")
+        file.close()
 
-    def log_time_step(self, time_step_number):
+    def log_time_step(self, number_of_dead, time_step_number):
         ''' STRETCH CHALLENGE DETAILS:
 
         If you choose to extend this method, the format of the summary statistics logged
@@ -94,4 +100,8 @@ class Logger(object):
         # TODO: Finish this method. This method should log when a time step ends, and a
         # new one begins.
         # NOTE: Here is an opportunity for a stretch challenge!
-        pass
+
+        with open(self.file_name, "walking_dead") as file:
+            file.writelines(["Time step number {} ended, beginning {} \n".format(
+                time_step_number, time_step_number + 1)])
+        file.close()
