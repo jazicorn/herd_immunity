@@ -33,6 +33,9 @@ class Logger(object):
         answers.write("Population Size: {} \tPercentage Vaccinated: {} \tVirus Name: {} \tMortality Rate {} \tVirus Reproduction Rate: {}".format(pop_size, vacc_percentage, virus_name, mortality_rate,
                            basic_repro_num))
 
+    def test_write_metadata():
+        print(yas)
+
     def log_interaction(self, person, random_person, random_person_sick=None,
                         random_person_vacc=None, did_infect=None):
         '''
@@ -48,7 +51,20 @@ class Logger(object):
         # represent all the possible edge cases. Use the values passed along with each person,
         # along with whether they are sick or vaccinated when they interact to determine
         # exactly what happened in the interaction and create a String, and write to your logfile.
-        pass
+        f = open(self.file_name, 'a')
+
+        f.write("\nInfected Person: #{} \nExposed Person #{}".format(person1._id, person2._id))
+
+        if did_infect == True:
+            f.write("\nPerson #{} was infected by person #{}".format(person2._id, person1._id))
+        elif person2_vacc == True:
+            self.saved_by_vaccine += 1
+            f.write("\nPerson #{} is vaccinated against the infection.".format(person2._id))
+        elif person2_sick == True:
+            f.write("\nPerson #{} is already infected.".format(person2._id))
+        else:
+            f.write("\nPerson #{} did not get infected by person #{}".format(person2._id, person1._id))
+
 
     def log_infection_survival(self, person, did_die_from_infection):
         ''' The Simulation object uses this method to log the results of every
@@ -81,7 +97,3 @@ class Logger(object):
         # new one begins.
         # NOTE: Here is an opportunity for a stretch challenge!
         pass
-
-    def test_logger_init():
-        log = logger.Logger("new_file")
-        assert log.file_name = "new_file"
