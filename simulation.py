@@ -57,7 +57,7 @@ class Simulation(object):
         self.total_dead = 0 # Int
         self.file_name = "{}_simulation_pop_{}_vp_{}_infected_{}.txt".format(
             virus_name, population_size, vacc_percentage, initial_infected)
-        self.newly_infected = []
+
 
     def logger(self):
         Logger(self.file_name)
@@ -84,6 +84,15 @@ class Simulation(object):
             population.append(Person(i, False, self.virus_name))
 
 
+        for i in range(initial_infected, self.population - initial_infected):
+            if random.random() < vacc_persentage:
+                population.append(Person(i, True))
+            else:
+                population.append(Person(i, False))
+
+            #print(population)
+        return population
+
     def _simulation_should_continue(self):
         ''' The simulation should only end if the entire population is dead
         or everyone is vaccinated.
@@ -92,7 +101,9 @@ class Simulation(object):
                 bool: True for simulation should continue, False if it should end.
         '''
         # TODO: Complete this helper method.  Returns a Boolean.
-        pass
+        if self.dead == self.population_size or self.infected_count
+            return False
+        return True
 
     def run(self):
         ''' This method should run the simulation until all requirements for ending
@@ -106,13 +117,16 @@ class Simulation(object):
         # HINT: You may want to call the logger's log_time_step() method at the end of each time step.
         # TODO: Set this variable using a helper
         time_step_counter = 0
-        should_continue = None
+        should_continue = self._simulation_should_continue()
 
         while should_continue:
         # TODO: for every iteration of this loop, call self.time_step() to compute another
         # round of this simulation.
-        print('The simulation has ended after {time_step_counter} turns.'.format(time_step_counter))
-        pass
+            time_step_counter += 1
+            self.logger.log_time_step(time_step_counter)
+            self.time_step()
+            should_continue = self._simulation_should_continue()
+        print('The simulation has ended after {} turns.'.format(time_step_counter))
 
     def time_step(self):
         ''' This method should contain all the logic for computing one time step
@@ -127,7 +141,13 @@ class Simulation(object):
                 increment interaction counter by 1.
             '''
         # TODO: Finish this method.
-        pass
+        infected_people = []
+        total_interactions = 100
+        random_person
+        for person in self.population:
+            if person
+
+            
 
     def interaction(self, person, random_person):
         '''This method should be called any time two living people are selected for an
